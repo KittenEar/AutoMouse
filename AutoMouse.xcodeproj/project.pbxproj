@@ -1,0 +1,342 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D37FE5841D797E6F00A44D5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FE5831D797E6F00A44D5E /* AppDelegate.swift */; };
+		D37FE5861D797E6F00A44D5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FE5851D797E6F00A44D5E /* ViewController.swift */; };
+		D37FE5881D797E6F00A44D5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D37FE5871D797E6F00A44D5E /* Assets.xcassets */; };
+		D37FE58B1D797E6F00A44D5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D37FE5891D797E6F00A44D5E /* Main.storyboard */; };
+		D37FE59B1D797F1200A44D5E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FE5931D797F1200A44D5E /* Log.swift */; };
+		D37FE59C1D797F1200A44D5E /* LogWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FE5941D797F1200A44D5E /* LogWindowController.swift */; };
+		D37FE59D1D797F1200A44D5E /* LogWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FE5951D797F1200A44D5E /* LogWindowController.xib */; };
+		D37FE59E1D797F1200A44D5E /* Memory.m in Sources */ = {isa = PBXBuildFile; fileRef = D37FE5971D797F1200A44D5E /* Memory.m */; };
+		D37FE59F1D797F1200A44D5E /* OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = D37FE5991D797F1200A44D5E /* OpenCV.mm */; };
+		D37FE5A41D79837A00A44D5E /* libopencv_core.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D37FE5A11D79837A00A44D5E /* libopencv_core.2.4.12.dylib */; };
+		D37FE5A51D79837A00A44D5E /* libopencv_highgui.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D37FE5A21D79837A00A44D5E /* libopencv_highgui.2.4.12.dylib */; };
+		D37FE5A61D79837A00A44D5E /* libopencv_imgproc.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D37FE5A31D79837A00A44D5E /* libopencv_imgproc.2.4.12.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D37FE5801D797E6F00A44D5E /* AutoMouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoMouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D37FE5831D797E6F00A44D5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D37FE5851D797E6F00A44D5E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D37FE5871D797E6F00A44D5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D37FE58A1D797E6F00A44D5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D37FE58C1D797E6F00A44D5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D37FE5921D797F1200A44D5E /* AutoMouse-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AutoMouse-Bridging-Header.h"; sourceTree = "<group>"; };
+		D37FE5931D797F1200A44D5E /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		D37FE5941D797F1200A44D5E /* LogWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogWindowController.swift; sourceTree = "<group>"; };
+		D37FE5951D797F1200A44D5E /* LogWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogWindowController.xib; sourceTree = "<group>"; };
+		D37FE5961D797F1200A44D5E /* Memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memory.h; sourceTree = "<group>"; };
+		D37FE5971D797F1200A44D5E /* Memory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Memory.m; sourceTree = "<group>"; };
+		D37FE5981D797F1200A44D5E /* OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCV.h; sourceTree = "<group>"; };
+		D37FE5991D797F1200A44D5E /* OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCV.mm; sourceTree = "<group>"; };
+		D37FE5A11D79837A00A44D5E /* libopencv_core.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_core.2.4.12.dylib; sourceTree = "<group>"; };
+		D37FE5A21D79837A00A44D5E /* libopencv_highgui.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_highgui.2.4.12.dylib; sourceTree = "<group>"; };
+		D37FE5A31D79837A00A44D5E /* libopencv_imgproc.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_imgproc.2.4.12.dylib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D37FE57D1D797E6F00A44D5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D37FE5A41D79837A00A44D5E /* libopencv_core.2.4.12.dylib in Frameworks */,
+				D37FE5A51D79837A00A44D5E /* libopencv_highgui.2.4.12.dylib in Frameworks */,
+				D37FE5A61D79837A00A44D5E /* libopencv_imgproc.2.4.12.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D37FE5771D797E6F00A44D5E = {
+			isa = PBXGroup;
+			children = (
+				D37FE5821D797E6F00A44D5E /* AutoMouse */,
+				D37FE5811D797E6F00A44D5E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D37FE5811D797E6F00A44D5E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D37FE5801D797E6F00A44D5E /* AutoMouse.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D37FE5821D797E6F00A44D5E /* AutoMouse */ = {
+			isa = PBXGroup;
+			children = (
+				D37FE5A11D79837A00A44D5E /* libopencv_core.2.4.12.dylib */,
+				D37FE5A21D79837A00A44D5E /* libopencv_highgui.2.4.12.dylib */,
+				D37FE5A31D79837A00A44D5E /* libopencv_imgproc.2.4.12.dylib */,
+				D37FE5831D797E6F00A44D5E /* AppDelegate.swift */,
+				D37FE5851D797E6F00A44D5E /* ViewController.swift */,
+				D37FE5931D797F1200A44D5E /* Log.swift */,
+				D37FE5941D797F1200A44D5E /* LogWindowController.swift */,
+				D37FE5951D797F1200A44D5E /* LogWindowController.xib */,
+				D37FE5961D797F1200A44D5E /* Memory.h */,
+				D37FE5971D797F1200A44D5E /* Memory.m */,
+				D37FE5981D797F1200A44D5E /* OpenCV.h */,
+				D37FE5991D797F1200A44D5E /* OpenCV.mm */,
+				D37FE5871D797E6F00A44D5E /* Assets.xcassets */,
+				D37FE5891D797E6F00A44D5E /* Main.storyboard */,
+				D37FE58C1D797E6F00A44D5E /* Info.plist */,
+				D37FE5921D797F1200A44D5E /* AutoMouse-Bridging-Header.h */,
+			);
+			path = AutoMouse;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D37FE57F1D797E6F00A44D5E /* AutoMouse */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D37FE58F1D797E6F00A44D5E /* Build configuration list for PBXNativeTarget "AutoMouse" */;
+			buildPhases = (
+				D37FE57C1D797E6F00A44D5E /* Sources */,
+				D37FE57D1D797E6F00A44D5E /* Frameworks */,
+				D37FE57E1D797E6F00A44D5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AutoMouse;
+			productName = AutoMouse;
+			productReference = D37FE5801D797E6F00A44D5E /* AutoMouse.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D37FE5781D797E6F00A44D5E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "cat-07";
+				TargetAttributes = {
+					D37FE57F1D797E6F00A44D5E = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = D37FE57B1D797E6F00A44D5E /* Build configuration list for PBXProject "AutoMouse" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D37FE5771D797E6F00A44D5E;
+			productRefGroup = D37FE5811D797E6F00A44D5E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D37FE57F1D797E6F00A44D5E /* AutoMouse */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D37FE57E1D797E6F00A44D5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D37FE5881D797E6F00A44D5E /* Assets.xcassets in Resources */,
+				D37FE58B1D797E6F00A44D5E /* Main.storyboard in Resources */,
+				D37FE59D1D797F1200A44D5E /* LogWindowController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D37FE57C1D797E6F00A44D5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D37FE5861D797E6F00A44D5E /* ViewController.swift in Sources */,
+				D37FE5841D797E6F00A44D5E /* AppDelegate.swift in Sources */,
+				D37FE59F1D797F1200A44D5E /* OpenCV.mm in Sources */,
+				D37FE59C1D797F1200A44D5E /* LogWindowController.swift in Sources */,
+				D37FE59E1D797F1200A44D5E /* Memory.m in Sources */,
+				D37FE59B1D797F1200A44D5E /* Log.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D37FE5891D797E6F00A44D5E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D37FE58A1D797E6F00A44D5E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D37FE58D1D797E6F00A44D5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/local/Cellar/opencv/**";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/opencv/2.4.12/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D37FE58E1D797E6F00A44D5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/local/Cellar/opencv/**";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/opencv/2.4.12/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D37FE5901D797E6F00A44D5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AutoMouse/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"/usr/local/Cellar/opencv/2.4.12/lib/**",
+					"$(PROJECT_DIR)/AutoMouse",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = identifier.AutoMouse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AutoMouse/AutoMouse-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D37FE5911D797E6F00A44D5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AutoMouse/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"/usr/local/Cellar/opencv/2.4.12/lib/**",
+					"$(PROJECT_DIR)/AutoMouse",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = identifier.AutoMouse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AutoMouse/AutoMouse-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D37FE57B1D797E6F00A44D5E /* Build configuration list for PBXProject "AutoMouse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D37FE58D1D797E6F00A44D5E /* Debug */,
+				D37FE58E1D797E6F00A44D5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D37FE58F1D797E6F00A44D5E /* Build configuration list for PBXNativeTarget "AutoMouse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D37FE5901D797E6F00A44D5E /* Debug */,
+				D37FE5911D797E6F00A44D5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D37FE5781D797E6F00A44D5E /* Project object */;
+}
