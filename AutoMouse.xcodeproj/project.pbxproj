@@ -14,11 +14,11 @@
 		D37FE59B1D797F1200A44D5E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FE5931D797F1200A44D5E /* Log.swift */; };
 		D37FE59C1D797F1200A44D5E /* LogWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37FE5941D797F1200A44D5E /* LogWindowController.swift */; };
 		D37FE59D1D797F1200A44D5E /* LogWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37FE5951D797F1200A44D5E /* LogWindowController.xib */; };
-		D37FE5A41D79837A00A44D5E /* libopencv_core.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D37FE5A11D79837A00A44D5E /* libopencv_core.2.4.12.dylib */; };
-		D37FE5A51D79837A00A44D5E /* libopencv_highgui.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D37FE5A21D79837A00A44D5E /* libopencv_highgui.2.4.12.dylib */; };
-		D37FE5A61D79837A00A44D5E /* libopencv_imgproc.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D37FE5A31D79837A00A44D5E /* libopencv_imgproc.2.4.12.dylib */; };
-		D37FE5E01DDC6A3E00A44D5E /* Memory.m in Sources */ = {isa = PBXBuildFile; fileRef = D37FE5DF1DDC6A3E00A44D5E /* Memory.m */; };
-		D37FE5E31DDC6A8800A44D5E /* OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = D37FE5E21DDC6A8800A44D5E /* OpenCV.mm */; };
+		D37FE5E71DE70A4000A44D5E /* Memory.m in Sources */ = {isa = PBXBuildFile; fileRef = D37FE5E61DE70A4000A44D5E /* Memory.m */; };
+		D37FE5EB1DE70A8A00A44D5E /* OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = D37FE5EA1DE70A8A00A44D5E /* OpenCV.mm */; };
+		D37FE5F01DE70AE400A44D5E /* libopencv_core.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D37FE5ED1DE70AE400A44D5E /* libopencv_core.2.4.12.dylib */; };
+		D37FE5F11DE70AE400A44D5E /* libopencv_highgui.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D37FE5EE1DE70AE400A44D5E /* libopencv_highgui.2.4.12.dylib */; };
+		D37FE5F21DE70AE400A44D5E /* libopencv_imgproc.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D37FE5EF1DE70AE400A44D5E /* libopencv_imgproc.2.4.12.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,13 +32,13 @@
 		D37FE5931D797F1200A44D5E /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D37FE5941D797F1200A44D5E /* LogWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogWindowController.swift; sourceTree = "<group>"; };
 		D37FE5951D797F1200A44D5E /* LogWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogWindowController.xib; sourceTree = "<group>"; };
-		D37FE5A11D79837A00A44D5E /* libopencv_core.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_core.2.4.12.dylib; sourceTree = "<group>"; };
-		D37FE5A21D79837A00A44D5E /* libopencv_highgui.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_highgui.2.4.12.dylib; sourceTree = "<group>"; };
-		D37FE5A31D79837A00A44D5E /* libopencv_imgproc.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_imgproc.2.4.12.dylib; sourceTree = "<group>"; };
-		D37FE5DE1DDC6A3E00A44D5E /* Memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Memory.h; path = Memory/Memory.h; sourceTree = "<group>"; };
-		D37FE5DF1DDC6A3E00A44D5E /* Memory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Memory.m; path = Memory/Memory.m; sourceTree = "<group>"; };
-		D37FE5E11DDC6A8800A44D5E /* OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenCV.h; path = OpenCV/OpenCV.h; sourceTree = "<group>"; };
-		D37FE5E21DDC6A8800A44D5E /* OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OpenCV.mm; path = OpenCV/OpenCV.mm; sourceTree = "<group>"; };
+		D37FE5E51DE70A4000A44D5E /* Memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memory.h; sourceTree = "<group>"; };
+		D37FE5E61DE70A4000A44D5E /* Memory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Memory.m; sourceTree = "<group>"; };
+		D37FE5E91DE70A8A00A44D5E /* OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCV.h; sourceTree = "<group>"; };
+		D37FE5EA1DE70A8A00A44D5E /* OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCV.mm; sourceTree = "<group>"; };
+		D37FE5ED1DE70AE400A44D5E /* libopencv_core.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_core.2.4.12.dylib; sourceTree = "<group>"; };
+		D37FE5EE1DE70AE400A44D5E /* libopencv_highgui.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_highgui.2.4.12.dylib; sourceTree = "<group>"; };
+		D37FE5EF1DE70AE400A44D5E /* libopencv_imgproc.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_imgproc.2.4.12.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,9 +46,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D37FE5A41D79837A00A44D5E /* libopencv_core.2.4.12.dylib in Frameworks */,
-				D37FE5A51D79837A00A44D5E /* libopencv_highgui.2.4.12.dylib in Frameworks */,
-				D37FE5A61D79837A00A44D5E /* libopencv_imgproc.2.4.12.dylib in Frameworks */,
+				D37FE5F01DE70AE400A44D5E /* libopencv_core.2.4.12.dylib in Frameworks */,
+				D37FE5F11DE70AE400A44D5E /* libopencv_highgui.2.4.12.dylib in Frameworks */,
+				D37FE5F21DE70AE400A44D5E /* libopencv_imgproc.2.4.12.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,40 +74,48 @@
 		D37FE5821D797E6F00A44D5E /* AutoMouse */ = {
 			isa = PBXGroup;
 			children = (
-				D37FE5A11D79837A00A44D5E /* libopencv_core.2.4.12.dylib */,
-				D37FE5A21D79837A00A44D5E /* libopencv_highgui.2.4.12.dylib */,
-				D37FE5A31D79837A00A44D5E /* libopencv_imgproc.2.4.12.dylib */,
 				D37FE5831D797E6F00A44D5E /* AppDelegate.swift */,
 				D37FE5851D797E6F00A44D5E /* ViewController.swift */,
+				D37FE5E41DE70A4000A44D5E /* Memory */,
+				D37FE5E81DE70A8A00A44D5E /* OpenCV */,
 				D37FE5931D797F1200A44D5E /* Log.swift */,
 				D37FE5941D797F1200A44D5E /* LogWindowController.swift */,
 				D37FE5951D797F1200A44D5E /* LogWindowController.xib */,
-				D37FE5DC1DDC693600A44D5E /* Memory */,
-				D37FE5DD1DDC69B100A44D5E /* OpenCV */,
 				D37FE5871D797E6F00A44D5E /* Assets.xcassets */,
 				D37FE5891D797E6F00A44D5E /* Main.storyboard */,
 				D37FE58C1D797E6F00A44D5E /* Info.plist */,
 				D37FE5921D797F1200A44D5E /* AutoMouse-Bridging-Header.h */,
+				D37FE5EC1DE70AE400A44D5E /* lib */,
 			);
 			path = AutoMouse;
 			sourceTree = "<group>";
 		};
-		D37FE5DC1DDC693600A44D5E /* Memory */ = {
+		D37FE5E41DE70A4000A44D5E /* Memory */ = {
 			isa = PBXGroup;
 			children = (
-				D37FE5DE1DDC6A3E00A44D5E /* Memory.h */,
-				D37FE5DF1DDC6A3E00A44D5E /* Memory.m */,
+				D37FE5E51DE70A4000A44D5E /* Memory.h */,
+				D37FE5E61DE70A4000A44D5E /* Memory.m */,
 			);
-			name = Memory;
+			path = Memory;
 			sourceTree = "<group>";
 		};
-		D37FE5DD1DDC69B100A44D5E /* OpenCV */ = {
+		D37FE5E81DE70A8A00A44D5E /* OpenCV */ = {
 			isa = PBXGroup;
 			children = (
-				D37FE5E11DDC6A8800A44D5E /* OpenCV.h */,
-				D37FE5E21DDC6A8800A44D5E /* OpenCV.mm */,
+				D37FE5E91DE70A8A00A44D5E /* OpenCV.h */,
+				D37FE5EA1DE70A8A00A44D5E /* OpenCV.mm */,
 			);
-			name = OpenCV;
+			path = OpenCV;
+			sourceTree = "<group>";
+		};
+		D37FE5EC1DE70AE400A44D5E /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				D37FE5ED1DE70AE400A44D5E /* libopencv_core.2.4.12.dylib */,
+				D37FE5EE1DE70AE400A44D5E /* libopencv_highgui.2.4.12.dylib */,
+				D37FE5EF1DE70AE400A44D5E /* libopencv_imgproc.2.4.12.dylib */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,9 +191,9 @@
 			files = (
 				D37FE5861D797E6F00A44D5E /* ViewController.swift in Sources */,
 				D37FE5841D797E6F00A44D5E /* AppDelegate.swift in Sources */,
+				D37FE5EB1DE70A8A00A44D5E /* OpenCV.mm in Sources */,
 				D37FE59C1D797F1200A44D5E /* LogWindowController.swift in Sources */,
-				D37FE5E01DDC6A3E00A44D5E /* Memory.m in Sources */,
-				D37FE5E31DDC6A8800A44D5E /* OpenCV.mm in Sources */,
+				D37FE5E71DE70A4000A44D5E /* Memory.m in Sources */,
 				D37FE59B1D797F1200A44D5E /* Log.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,6 +313,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"/usr/local/Cellar/opencv/2.4.12/lib/**",
 					"$(PROJECT_DIR)/AutoMouse",
+					"$(PROJECT_DIR)/AutoMouse/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = identifier.AutoMouse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -324,6 +333,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"/usr/local/Cellar/opencv/2.4.12/lib/**",
 					"$(PROJECT_DIR)/AutoMouse",
+					"$(PROJECT_DIR)/AutoMouse/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = identifier.AutoMouse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
