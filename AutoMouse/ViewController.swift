@@ -9,11 +9,11 @@
 import Cocoa
 
 enum Command {
-    case Sleep
-    case Move
-    case LeftDown
-    case LeftUp
-    case LeftDragged
+    case sleep
+    case move
+    case leftDown
+    case leftUp
+    case leftDragged
 }
 
 struct Action {
@@ -35,23 +35,23 @@ class ViewController: NSViewController {
     @IBOutlet weak var playBtn: NSButton!
     @IBOutlet weak var outputLabel: NSTextField!
     
-    private var monitorEvents: [AnyObject?] = []
+    fileprivate var monitorEvents: [AnyObject?] = []
 
-    private weak var globalMonitorEvent: AnyObject? = nil
-    private weak var globalMonitorMouseMoveEvent: AnyObject? = nil
-    private weak var globalMonitorLeftMouseDownEvent: AnyObject? = nil
-    private weak var globalMonitorLeftMouseUpEvent: AnyObject? = nil
-    private weak var globalMonitorLeftMouseDraggedEvent: AnyObject? = nil
-    private weak var globalMonitorFlagsChangedEvent: AnyObject? = nil
+    fileprivate weak var globalMonitorEvent: AnyObject? = nil
+    fileprivate weak var globalMonitorMouseMoveEvent: AnyObject? = nil
+    fileprivate weak var globalMonitorLeftMouseDownEvent: AnyObject? = nil
+    fileprivate weak var globalMonitorLeftMouseUpEvent: AnyObject? = nil
+    fileprivate weak var globalMonitorLeftMouseDraggedEvent: AnyObject? = nil
+    fileprivate weak var globalMonitorFlagsChangedEvent: AnyObject? = nil
     
-    private var localMonitorEvent: AnyObject? = nil
-    private weak var timer: NSTimer? = nil
-    private var interval: NSDate? = nil
-    private var oldFireDate: NSDate? = nil
-    private var startDate: NSDate? = nil
-    private var windowHeight: CGFloat? = nil
+    fileprivate var localMonitorEvent: AnyObject? = nil
+    fileprivate weak var timer: Timer? = nil
+    fileprivate var interval: Date? = nil
+    fileprivate var oldFireDate: Date? = nil
+    fileprivate var startDate: Date? = nil
+    fileprivate var windowHeight: CGFloat? = nil
     
-    private var loopFlg: Bool = false
+    fileprivate var loopFlg: Bool = false
     
     var mouseCommands: Array<Action> = []
     
@@ -77,7 +77,7 @@ class ViewController: NSViewController {
         
     }
     
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         didSet {
             // Update the view, if already loaded.
         }
@@ -86,15 +86,15 @@ class ViewController: NSViewController {
     // MARK: - event action
 
     // Recボタン
-    @IBAction func recBtnAction(sender: NSButton) {
+    @IBAction func recBtnAction(_ sender: NSButton) {
         
 //        logWindow.showWindow(sender)
 //        let mem = Memory()
 //        logWindow.debugWindow("usedMem", mem.usedMem())
         
-        self.recBtn.enabled = false
-        self.stopBtn.enabled = true
-        self.playBtn.enabled = false
+        self.recBtn.isEnabled = false
+        self.stopBtn.isEnabled = true
+        self.playBtn.isEnabled = false
         
         self.mouseCommands.removeAll()
         
@@ -104,11 +104,11 @@ class ViewController: NSViewController {
     }
     
     // Stopボタン
-    @IBAction func stopBtnAction(sender: NSButton) {
+    @IBAction func stopBtnAction(_ sender: NSButton) {
         
-        self.recBtn.enabled = true
-        self.stopBtn.enabled = false
-        self.playBtn.enabled = true
+        self.recBtn.isEnabled = true
+        self.stopBtn.isEnabled = false
+        self.playBtn.isEnabled = true
         
         self.interval = nil
         
@@ -138,57 +138,57 @@ class ViewController: NSViewController {
     }
     
     // Play
-    @IBAction func playBtnAction(sender: NSButton) {
+    @IBAction func playBtnAction(_ sender: NSButton) {
         
-        self.recBtn.enabled = false
-        self.stopBtn.enabled = true
-        self.playBtn.enabled = false
+        self.recBtn.isEnabled = false
+        self.stopBtn.isEnabled = true
+        self.playBtn.isEnabled = false
         
-        NSOperationQueue().addOperationWithBlock { () -> Void in
+        OperationQueue().addOperation { () -> Void in
             
             for event in self.mouseCommands {
                 
                 switch event.command {
-                case .Sleep:
+                case .sleep:
                     Log.debug("Sleep")
                     
                     let v: Double = event.value as! Double
-                    NSThread.sleepForTimeInterval(v)
+                    Thread.sleep(forTimeInterval: v)
                     
-                case .Move:
+                case .move:
                     Log.debug("Move")
                     
                     let v: NSPoint = event.value as! NSPoint
-                    let mouseMove = CGEventCreateMouseEvent(nil, .MouseMoved, v, .Center)
-                    CGEventPost(.CGHIDEventTap, mouseMove)
+                    let mouseMove = CGEvent(mouseEventSource: nil, mouseType: .mouseMoved, mouseCursorPosition: v, mouseButton: .center)
+                    mouseMove?.post(tap: .cghidEventTap)
                     
-                case .LeftDown:
+                case .leftDown:
                     Log.debug("LeftDown")
                     
                     let v: NSPoint = event.value as! NSPoint
-                    let leftMouseDown = CGEventCreateMouseEvent(nil, .LeftMouseDown, v, .Center)
-                    CGEventPost(.CGHIDEventTap, leftMouseDown)
+                    let leftMouseDown = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown, mouseCursorPosition: v, mouseButton: .center)
+                    leftMouseDown?.post(tap: .cghidEventTap)
                     
-                case .LeftUp:
+                case .leftUp:
                     Log.debug("LeftUp")
                     
                     let v: NSPoint = event.value as! NSPoint
-                    let leftMouseUp = CGEventCreateMouseEvent(nil, .LeftMouseUp, v, .Center)
-                    CGEventPost(.CGHIDEventTap, leftMouseUp)
+                    let leftMouseUp = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: v, mouseButton: .center)
+                    leftMouseUp?.post(tap: .cghidEventTap)
                     
-                case .LeftDragged:
+                case .leftDragged:
                     Log.debug("LeftDragged")
                     
                     let v: NSPoint = event.value as! NSPoint
-                    let leftMouseDragged = CGEventCreateMouseEvent(nil, .LeftMouseDragged, v, .Center)
-                    CGEventPost(.CGHIDEventTap, leftMouseDragged)
+                    let leftMouseDragged = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDragged, mouseCursorPosition: v, mouseButton: .center)
+                    leftMouseDragged?.post(tap: .cghidEventTap)
                     
                 }
             }
             
-            self.recBtn.enabled = true
-            self.stopBtn.enabled = false
-            self.playBtn.enabled = true
+            self.recBtn.isEnabled = true
+            self.stopBtn.isEnabled = false
+            self.playBtn.isEnabled = true
 
         }
         
@@ -203,23 +203,23 @@ class ViewController: NSViewController {
     }
     
     // 連打ボタン
-    @IBAction func rendaBtnAction(sender: NSButton) {
+    @IBAction func rendaBtnAction(_ sender: NSButton) {
         
         //        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
         //        dispatch_async(queue) {
         //        }
         
-        NSThread.sleepForTimeInterval(3.0)
+        Thread.sleep(forTimeInterval: 3.0)
         
-        self.oldFireDate = NSDate()
+        self.oldFireDate = Date()
         
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.001, target: self, selector: Selector("click:"), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(ViewController.click(_:)), userInfo: nil, repeats: true)
         //        self.timer = NSTimer.init(timeInterval: 0.1, target: self, selector: Selector("click:"), userInfo: nil, repeats: true)
         
         // test
         //        NSRunLoop.mainRunLoop().addTimer(self.timer!, forMode: NSRunLoopCommonModes)
         
-        self.globalMonitorEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.KeyDownMask, handler: { (event: NSEvent) -> Void in
+        self.globalMonitorEvent = NSEvent.addGlobalMonitorForEvents(matching: NSEventMask.keyDown, handler: { (event: NSEvent) -> Void in
             Log.debug("G event.keyCode", event.keyCode)
             
             if event.keyCode == 53 {
@@ -235,22 +235,22 @@ class ViewController: NSViewController {
                 self.globalMonitorEvent = nil
             }
             
-        })
+        }) as AnyObject?
         
     }
     
-    @IBAction func renda2Button(sender: NSButton) {
+    @IBAction func renda2Button(_ sender: NSButton) {
         
-        sender.enabled = false
+        sender.isEnabled = false
         //        self.loopFlg = true
         
-        self.globalMonitorEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.KeyDownMask, handler: { (event: NSEvent) -> Void in
+        self.globalMonitorEvent = NSEvent.addGlobalMonitorForEvents(matching: NSEventMask.keyDown, handler: { (event: NSEvent) -> Void in
             Log.debug("G event.keyCode", event.keyCode)
             
             if event.keyCode == 53 {
                 Log.debug("esc!!")
                 
-                sender.enabled = true
+                sender.isEnabled = true
                 
                 // timer stop
                 self.timer?.invalidate()
@@ -263,11 +263,11 @@ class ViewController: NSViewController {
                     self.globalMonitorEvent = nil
                 }
             }
-        })
+        }) as AnyObject?
         
-        NSThread.sleepForTimeInterval(3.0)
+        Thread.sleep(forTimeInterval: 3.0)
         
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("click:"), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(ViewController.click(_:)), userInfo: nil, repeats: true)
         
         //        NSOperationQueue().addOperationWithBlock({ () -> Void in
         //
@@ -296,80 +296,80 @@ class ViewController: NSViewController {
         
     }
 
-    @IBAction func logButtonAction(sender: NSButton) {
+    @IBAction func logButtonAction(_ sender: NSButton) {
         
         self.mouseCommands.removeAll()
         
-        self.globalMonitorMouseMoveEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(.MouseMovedMask, handler: { (event: NSEvent) -> Void in
+        self.globalMonitorMouseMoveEvent = NSEvent.addGlobalMonitorForEvents(matching: .mouseMoved, handler: { (event: NSEvent) -> Void in
             Log.debug("G mouse move", event.locationInWindow)
             
             let point = NSPoint.init(x: event.locationInWindow.x, y: 800 - event.locationInWindow.y)
-            let sleep = NSDate.init().timeIntervalSinceDate(self.startDate!)
+            let sleep = Date.init().timeIntervalSince(self.startDate!)
             
-            self.mouseCommands.append(Action.init(command: .Sleep, value: sleep))
-            self.mouseCommands.append(Action.init(command: .Move, value: point))
+            self.mouseCommands.append(Action.init(command: .sleep, value: sleep))
+            self.mouseCommands.append(Action.init(command: .move, value: point))
             
-            self.startDate = NSDate.init()
-        })
+            self.startDate = Date.init()
+        }) as AnyObject?
         
-        self.globalMonitorLeftMouseDownEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(.LeftMouseDownMask, handler: { (event: NSEvent) -> Void in
+        self.globalMonitorLeftMouseDownEvent = NSEvent.addGlobalMonitorForEvents(matching: .leftMouseDown, handler: { (event: NSEvent) -> Void in
             Log.debug("G left D", event.locationInWindow)
             
             let point = NSPoint.init(x: event.locationInWindow.x, y: 800 - event.locationInWindow.y)
-            let sleep = NSDate.init().timeIntervalSinceDate(self.startDate!)
+            let sleep = Date.init().timeIntervalSince(self.startDate!)
             
-            self.mouseCommands.append(Action.init(command: .Sleep, value: sleep))
-            self.mouseCommands.append(Action.init(command: .LeftDown, value: point))
+            self.mouseCommands.append(Action.init(command: .sleep, value: sleep))
+            self.mouseCommands.append(Action.init(command: .leftDown, value: point))
             
-            self.startDate = NSDate.init()
-        })
+            self.startDate = Date.init()
+        }) as AnyObject?
         
-        self.globalMonitorLeftMouseUpEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(.LeftMouseUpMask, handler: { (event: NSEvent) -> Void in
+        self.globalMonitorLeftMouseUpEvent = NSEvent.addGlobalMonitorForEvents(matching: .leftMouseUp, handler: { (event: NSEvent) -> Void in
             Log.debug("G left U", event.locationInWindow)
             
             let point = NSPoint.init(x: event.locationInWindow.x, y: 800 - event.locationInWindow.y)
-            let sleep = NSDate.init().timeIntervalSinceDate(self.startDate!)
+            let sleep = Date.init().timeIntervalSince(self.startDate!)
             
-            self.mouseCommands.append(Action.init(command: .Sleep, value: sleep))
-            self.mouseCommands.append(Action.init(command: .LeftUp, value: point))
+            self.mouseCommands.append(Action.init(command: .sleep, value: sleep))
+            self.mouseCommands.append(Action.init(command: .leftUp, value: point))
             
-            self.startDate = NSDate.init()
-        })
+            self.startDate = Date.init()
+        }) as AnyObject?
         
-        self.globalMonitorLeftMouseDraggedEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(.LeftMouseDraggedMask, handler: { (event: NSEvent) -> Void in
+        self.globalMonitorLeftMouseDraggedEvent = NSEvent.addGlobalMonitorForEvents(matching: .leftMouseDragged, handler: { (event: NSEvent) -> Void in
             
             Log.debug("G left Dragged", event.locationInWindow)
             
             let point = NSPoint.init(x: event.locationInWindow.x, y: 800 - event.locationInWindow.y)
-            let sleep = NSDate.init().timeIntervalSinceDate(self.startDate!)
+            let sleep = Date.init().timeIntervalSince(self.startDate!)
             
-            self.mouseCommands.append(Action.init(command: .Sleep, value: sleep))
-            self.mouseCommands.append(Action.init(command: .LeftDragged, value: point))
+            self.mouseCommands.append(Action.init(command: .sleep, value: sleep))
+            self.mouseCommands.append(Action.init(command: .leftDragged, value: point))
             
-            self.startDate = NSDate.init()
-        })
+            self.startDate = Date.init()
+        }) as AnyObject?
         
-        self.globalMonitorFlagsChangedEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(.OtherMouseDraggedMask, handler: { (event: NSEvent) -> Void in
+        self.globalMonitorFlagsChangedEvent = NSEvent.addGlobalMonitorForEvents(matching: .otherMouseDragged, handler: { (event: NSEvent) -> Void in
             Log.debug("G FlagsChanged", event.locationInWindow)
             
             let point = NSPoint.init(x: event.locationInWindow.x, y: 800 - event.locationInWindow.y)
-            let sleep = NSDate.init().timeIntervalSinceDate(self.startDate!)
+            let sleep = Date.init().timeIntervalSince(self.startDate!)
             
-            self.mouseCommands.append(Action.init(command: .Sleep, value: sleep))
-            self.mouseCommands.append(Action.init(command: .LeftDragged, value: point))
+            self.mouseCommands.append(Action.init(command: .sleep, value: sleep))
+            self.mouseCommands.append(Action.init(command: .leftDragged, value: point))
             
-            self.startDate = NSDate.init()
-        })
+            self.startDate = Date.init()
+        }) as AnyObject?
         
-        self.startDate = NSDate.init()
+        self.startDate = Date.init()
         
     }
     
     // MARK: - Selector method
 
-    func click(timer: NSTimer) {
+    func click(_ timer: Timer) {
         
-        let date = NSDate.init()
+        let date = Date.init()
         
         // 10秒毎
         if false /*date.timeIntervalSinceDate(self.oldFireDate!) > 10 */ {
@@ -377,15 +377,15 @@ class ViewController: NSViewController {
             self.oldFireDate = date
             Log.debug(self.oldFireDate)
             
-            NSOperationQueue().addOperationWithBlock({ () -> Void in
+            OperationQueue().addOperation({ () -> Void in
                 
                 // 全画面スクリーンショット
                 let image = CGDisplayCreateImage(CGMainDisplayID())
-                let bmap = NSBitmapImageRep.init(CGImage: image!)
+                let bmap = NSBitmapImageRep.init(cgImage: image!)
                 
-                let data = bmap.representationUsingType(NSBitmapImageFileType.NSBMPFileType, properties: [:])
+                let data = bmap.representation(using: NSBitmapImageFileType.BMP, properties: [:])
                 //        let data = bmap.representationUsingType(NSBitmapImageFileType.NSPNGFileType, properties: [:])
-                data!.writeToFile("ss.bmp", atomically: true)
+                try? data!.write(to: URL(fileURLWithPath: "ss.bmp"), options: [.atomic])
                 
                 let images = ["cookie00.png", "cookie01.png", "cookie02.png", "cookie03.png",
                     "cookie04.png", "cookie05.png", "cookie06.png", "cookie07.png"]
@@ -404,20 +404,20 @@ class ViewController: NSViewController {
                 
                 
                 
-                if CGPointEqualToPoint(point, CGPointZero) != true {
+                if point.equalTo(CGPoint.zero) != true {
                     Log.debug("match")
                     
-                    let event: CGEvent = CGEventCreate(nil)!
-                    let nowlocation: CGPoint = CGEventGetLocation(event)
+                    let event: CGEvent = CGEvent(source: nil)!
+                    let nowlocation: CGPoint = event.location
                     
-                    let mouseDown: CGEvent = CGEventCreateMouseEvent(nil, CGEventType.LeftMouseDown, point, CGMouseButton.Left)!
-                    CGEventPost(CGEventTapLocation.CGHIDEventTap, mouseDown)
+                    let mouseDown: CGEvent = CGEvent(mouseEventSource: nil, mouseType: CGEventType.leftMouseDown, mouseCursorPosition: point, mouseButton: CGMouseButton.left)!
+                    mouseDown.post(tap: CGEventTapLocation.cghidEventTap)
                     
-                    let mouseUp: CGEvent = CGEventCreateMouseEvent(nil, CGEventType.LeftMouseUp, point, CGMouseButton.Left)!
-                    CGEventPost(CGEventTapLocation.CGHIDEventTap, mouseUp)
+                    let mouseUp: CGEvent = CGEvent(mouseEventSource: nil, mouseType: CGEventType.leftMouseUp, mouseCursorPosition: point, mouseButton: CGMouseButton.left)!
+                    mouseUp.post(tap: CGEventTapLocation.cghidEventTap)
                     
-                    let mouseMove: CGEvent = CGEventCreateMouseEvent(nil, CGEventType.MouseMoved, nowlocation, CGMouseButton.Left)!
-                    CGEventPost(CGEventTapLocation.CGHIDEventTap, mouseMove)
+                    let mouseMove: CGEvent = CGEvent(mouseEventSource: nil, mouseType: CGEventType.mouseMoved, mouseCursorPosition: nowlocation, mouseButton: CGMouseButton.left)!
+                    mouseMove.post(tap: CGEventTapLocation.cghidEventTap)
                     
                 }
                 
@@ -426,22 +426,22 @@ class ViewController: NSViewController {
             
         }
         
-        let event: CGEvent = CGEventCreate(nil)!
-        let location: CGPoint = CGEventGetLocation(event)
+        let event: CGEvent = CGEvent(source: nil)!
+        let location: CGPoint = event.location
         
         //        Log.debug(location)
         
         // UIの更新を行わないとタイマーが正常に動作しないことに注意
         self.outputLabel.stringValue = NSStringFromPoint(location)
         
-        let mouseDown: CGEvent = CGEventCreateMouseEvent(nil, CGEventType.LeftMouseDown, location, CGMouseButton.Left)!
-        CGEventPost(CGEventTapLocation.CGHIDEventTap, mouseDown)
+        let mouseDown: CGEvent = CGEvent(mouseEventSource: nil, mouseType: CGEventType.leftMouseDown, mouseCursorPosition: location, mouseButton: CGMouseButton.left)!
+        mouseDown.post(tap: CGEventTapLocation.cghidEventTap)
         
-        let mouseUp: CGEvent = CGEventCreateMouseEvent(nil, CGEventType.LeftMouseUp, location, CGMouseButton.Left)!
-        CGEventPost(CGEventTapLocation.CGHIDEventTap, mouseUp)
+        let mouseUp: CGEvent = CGEvent(mouseEventSource: nil, mouseType: CGEventType.leftMouseUp, mouseCursorPosition: location, mouseButton: CGMouseButton.left)!
+        mouseUp.post(tap: CGEventTapLocation.cghidEventTap)
     }
     
-    override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
         Log.debug(segue.destinationController)
         
@@ -450,87 +450,87 @@ class ViewController: NSViewController {
     // MARK: - private method
     
     // イベント登録
-    private func registerEvents() {
+    fileprivate func registerEvents() {
         
         var anyObj: AnyObject? = nil
         
         // グローバルイベント マウスMoved
-        anyObj = NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.MouseMovedMask, handler: { (event: NSEvent) -> Void in
+        anyObj = NSEvent.addGlobalMonitorForEvents(matching: NSEventMask.mouseMoved, handler: { (event: NSEvent) -> Void in
             Log.debug("G MMoved Pos", event.locationInWindow)
             
             let point = NSPoint.init(x: event.locationInWindow.x, y: self.windowHeight! - event.locationInWindow.y)
             
-            self.mouseCommands.append(Action.init(command: .Move, value: point))
+            self.mouseCommands.append(Action.init(command: .move, value: point))
             
             if let time = self.interval {
-                let sleepTime = NSDate.init().timeIntervalSinceDate(time)
-                self.mouseCommands.append(Action.init(command: .Sleep, value: sleepTime))
+                let sleepTime = Date.init().timeIntervalSince(time)
+                self.mouseCommands.append(Action.init(command: .sleep, value: sleepTime))
             }
             
-            self.interval = NSDate.init()
-        })
+            self.interval = Date.init()
+        }) as AnyObject?
         
         self.monitorEvents.append(anyObj!)
 
         // グローバルイベント マウス左Down test
-        anyObj = NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDownMask, handler: { (event: NSEvent) -> Void in
+        anyObj = NSEvent.addGlobalMonitorForEvents(matching: NSEventMask.leftMouseDown, handler: { (event: NSEvent) -> Void in
             Log.debug("G LMDown Pos", event.locationInWindow)
             
             let point = NSPoint.init(x: event.locationInWindow.x, y: self.windowHeight! - event.locationInWindow.y)
             
-            self.mouseCommands.append(Action.init(command: .LeftDown, value: point))
+            self.mouseCommands.append(Action.init(command: .leftDown, value: point))
             
             if let time = self.interval {
-                let sleepTime = NSDate.init().timeIntervalSinceDate(time)
-                self.mouseCommands.append(Action.init(command: .Sleep, value: sleepTime))
+                let sleepTime = Date.init().timeIntervalSince(time)
+                self.mouseCommands.append(Action.init(command: .sleep, value: sleepTime))
             }
             
-            self.interval = NSDate.init()
-        })
+            self.interval = Date.init()
+        }) as AnyObject?
         
         self.monitorEvents.append(anyObj!)
 
         // グローバルイベント マウス左Up test
-        anyObj = NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseUpMask, handler: { (event: NSEvent) -> Void in
+        anyObj = NSEvent.addGlobalMonitorForEvents(matching: NSEventMask.leftMouseUp, handler: { (event: NSEvent) -> Void in
             Log.debug("G LMUp Pos", event.locationInWindow)
             
             let point = NSPoint.init(x: event.locationInWindow.x, y: self.windowHeight! - event.locationInWindow.y)
             
-            self.mouseCommands.append(Action.init(command: .LeftUp, value: point))
+            self.mouseCommands.append(Action.init(command: .leftUp, value: point))
             
             if let time = self.interval {
-                let sleepTime = NSDate.init().timeIntervalSinceDate(time)
-                self.mouseCommands.append(Action.init(command: .Sleep, value: sleepTime))
+                let sleepTime = Date.init().timeIntervalSince(time)
+                self.mouseCommands.append(Action.init(command: .sleep, value: sleepTime))
             }
             
-            self.interval = NSDate.init()
-        })
+            self.interval = Date.init()
+        }) as AnyObject?
         
         self.monitorEvents.append(anyObj!)
 
         // グローバルイベント マウス左Dragged test
-        anyObj = NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDraggedMask, handler: { (event: NSEvent) -> Void in
+        anyObj = NSEvent.addGlobalMonitorForEvents(matching: NSEventMask.leftMouseDragged, handler: { (event: NSEvent) -> Void in
             Log.debug("G LMDragged Pos", event.locationInWindow)
             
             let point = NSPoint.init(x: event.locationInWindow.x, y: self.windowHeight! - event.locationInWindow.y)
             
-            self.mouseCommands.append(Action.init(command: .LeftDragged, value: point))
+            self.mouseCommands.append(Action.init(command: .leftDragged, value: point))
             
             if let time = self.interval {
-                let sleepTime = NSDate.init().timeIntervalSinceDate(time)
-                self.mouseCommands.append(Action.init(command: .Sleep, value: sleepTime))
+                let sleepTime = Date.init().timeIntervalSince(time)
+                self.mouseCommands.append(Action.init(command: .sleep, value: sleepTime))
             }
             
-            self.interval = NSDate.init()
-        })
+            self.interval = Date.init()
+        }) as AnyObject?
         
         self.monitorEvents.append(anyObj!)
 
         // ローカルイベント マウスMoved
-        anyObj = NSEvent.addLocalMonitorForEventsMatchingMask(NSEventMask.MouseMovedMask, handler: { (event: NSEvent) -> NSEvent? in
+        anyObj = NSEvent.addLocalMonitorForEvents(matching: NSEventMask.mouseMoved, handler: { (event: NSEvent) -> NSEvent? in
             Log.debug("L MMoved Pos", event.locationInWindow)
             
-            var point = CGPointZero
+            var point = CGPoint.zero
             
             if event.window == nil {
                 // マウスがアプリ外に出た場合、nil になるときがある
@@ -553,25 +553,25 @@ class ViewController: NSViewController {
                 
             }
             
-            self.mouseCommands.append(Action.init(command: .Move, value: point))
+            self.mouseCommands.append(Action.init(command: .move, value: point))
             
             if let time = self.interval {
-                let sleepTime = NSDate.init().timeIntervalSinceDate(time)
-                self.mouseCommands.append(Action.init(command: .Sleep, value: sleepTime))
+                let sleepTime = Date.init().timeIntervalSince(time)
+                self.mouseCommands.append(Action.init(command: .sleep, value: sleepTime))
             }
             
-            self.interval = NSDate.init()
+            self.interval = Date.init()
             
             return event
-        })
+        }) as AnyObject?
         
         self.monitorEvents.append(anyObj!)
 
         // ローカルイベント マウスDown test
-        anyObj = NSEvent.addLocalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDownMask, handler: { (event: NSEvent) -> NSEvent? in
+        anyObj = NSEvent.addLocalMonitorForEvents(matching: NSEventMask.leftMouseDown, handler: { (event: NSEvent) -> NSEvent? in
             Log.debug("L LMDown Pos", event.locationInWindow)
             
-            var point = CGPointZero
+            var point = CGPoint.zero
             
             if event.window == nil {
                 // マウスがアプリ外に出た場合、nil になるときがある
@@ -594,25 +594,25 @@ class ViewController: NSViewController {
                 
             }
             
-            self.mouseCommands.append(Action.init(command: .LeftDown, value: point))
+            self.mouseCommands.append(Action.init(command: .leftDown, value: point))
             
             if let time = self.interval {
-                let sleepTime = NSDate.init().timeIntervalSinceDate(time)
-                self.mouseCommands.append(Action.init(command: .Sleep, value: sleepTime))
+                let sleepTime = Date.init().timeIntervalSince(time)
+                self.mouseCommands.append(Action.init(command: .sleep, value: sleepTime))
             }
             
-            self.interval = NSDate.init()
+            self.interval = Date.init()
             
             return event
-        })
+        }) as AnyObject?
         
         self.monitorEvents.append(anyObj!)
 
         // ローカルイベント マウスUp test
-        anyObj = NSEvent.addLocalMonitorForEventsMatchingMask(NSEventMask.LeftMouseUpMask, handler: { (event: NSEvent) -> NSEvent? in
+        anyObj = NSEvent.addLocalMonitorForEvents(matching: NSEventMask.leftMouseUp, handler: { (event: NSEvent) -> NSEvent? in
             Log.debug("L LMUp Pos", event.locationInWindow)
             
-            var point = CGPointZero
+            var point = CGPoint.zero
             
             if event.window == nil {
                 // マウスがアプリ外に出た場合、nil になるときがある
@@ -635,25 +635,25 @@ class ViewController: NSViewController {
                 
             }
             
-            self.mouseCommands.append(Action.init(command: .LeftUp, value: point))
+            self.mouseCommands.append(Action.init(command: .leftUp, value: point))
             
             if let time = self.interval {
-                let sleepTime = NSDate.init().timeIntervalSinceDate(time)
-                self.mouseCommands.append(Action.init(command: .Sleep, value: sleepTime))
+                let sleepTime = Date.init().timeIntervalSince(time)
+                self.mouseCommands.append(Action.init(command: .sleep, value: sleepTime))
             }
             
-            self.interval = NSDate.init()
+            self.interval = Date.init()
             
             return event
-        })
+        }) as AnyObject?
         
         self.monitorEvents.append(anyObj!)
 
         // ローカルイベント マウスDragged test
-        anyObj = NSEvent.addLocalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDraggedMask, handler: { (event: NSEvent) -> NSEvent? in
+        anyObj = NSEvent.addLocalMonitorForEvents(matching: NSEventMask.leftMouseDragged, handler: { (event: NSEvent) -> NSEvent? in
             Log.debug("L LMDragged Pos", event.locationInWindow)
             
-            var point = CGPointZero
+            var point = CGPoint.zero
             
             if event.window == nil {
                 // マウスがアプリ外に出た場合、nil になるときがある
@@ -676,24 +676,24 @@ class ViewController: NSViewController {
                 
             }
             
-            self.mouseCommands.append(Action.init(command: .LeftDragged, value: point))
+            self.mouseCommands.append(Action.init(command: .leftDragged, value: point))
             
             if let time = self.interval {
-                let sleepTime = NSDate.init().timeIntervalSinceDate(time)
-                self.mouseCommands.append(Action.init(command: .Sleep, value: sleepTime))
+                let sleepTime = Date.init().timeIntervalSince(time)
+                self.mouseCommands.append(Action.init(command: .sleep, value: sleepTime))
             }
             
-            self.interval = NSDate.init()
+            self.interval = Date.init()
             
             return event
-        })
+        }) as AnyObject?
         
         self.monitorEvents.append(anyObj!)
 
     }
 
     // イベント解除
-    private func releaseEvents() {
+    fileprivate func releaseEvents() {
         
 //        for var i = 0; i < self.monitorEvents.count; i++ {
 //            NSEvent.removeMonitor(self.monitorEvents[i]!)

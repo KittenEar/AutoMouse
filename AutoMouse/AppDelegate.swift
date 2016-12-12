@@ -13,20 +13,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
         // Windowを常に前面表示
-        NSApp.windows[0].level = Int(CGWindowLevelForKey(.FloatingWindowLevelKey))
+        NSApp.windows[0].level = Int(CGWindowLevelForKey(.floatingWindow))
         NSApp.windows[0].acceptsMouseMovedEvents = true
 
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
 
-    func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         // ウインドウを閉じたときにアプリを終了する
         return true
     }

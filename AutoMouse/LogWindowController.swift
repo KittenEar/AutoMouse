@@ -17,28 +17,28 @@ class LogWindowController: NSWindowController {
 
     }
     
-    func debugWindow(items: Any ...) {
+    func debugWindow(_ items: Any ...) {
         
         let log = NSMutableString.init()
 
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP")
-        dateFormatter.timeStyle = .MediumStyle
-        dateFormatter.dateStyle = .MediumStyle
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+        dateFormatter.timeStyle = .medium
+        dateFormatter.dateStyle = .medium
         
-        log.appendString(dateFormatter.stringFromDate(NSDate()) + " ")
+        log.append(dateFormatter.string(from: Date()) + " ")
         
         
         for item in items {
             var out: String = ""
-            print(item, separator: "", terminator: "", toStream: &out)
-            log.appendString(out)
+            print(item, separator: "", terminator: "", to: &out)
+            log.append(out)
         }
         
-        log.appendString("\n")
+        log.append("\n")
         
         self.logTextView.textStorage?.beginEditing()
-        self.logTextView.textStorage?.appendAttributedString(NSAttributedString.init(string: log as String))
+        self.logTextView.textStorage?.append(NSAttributedString.init(string: log as String))
         self.logTextView.textStorage?.endEditing()
         
     }

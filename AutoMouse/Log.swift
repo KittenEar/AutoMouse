@@ -10,14 +10,14 @@ import Foundation
 
 class Log {
     
-    class func debug(items: Any ...) {
+    class func debug(_ items: Any ...) {
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP")
-        dateFormatter.timeStyle = .MediumStyle
-        dateFormatter.dateStyle = .MediumStyle
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+        dateFormatter.timeStyle = .medium
+        dateFormatter.dateStyle = .medium
 
-        print(dateFormatter.stringFromDate(NSDate()), "", terminator: "")
+        print(dateFormatter.string(from: Date()), "", terminator: "")
 
         for item in items {
             print(item, "", terminator: "")
