@@ -57,6 +57,8 @@ class ViewController: NSViewController {
     
     var logWindow = LogWindowController(windowNibName: "LogWindowController")
     
+    // MARK: - lifecycle method
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -81,6 +83,8 @@ class ViewController: NSViewController {
         }
     }
     
+    // MARK: - event action
+
     // Recボタン
     @IBAction func recBtnAction(sender: NSButton) {
         
@@ -181,6 +185,11 @@ class ViewController: NSViewController {
                     
                 }
             }
+            
+            self.recBtn.enabled = true
+            self.stopBtn.enabled = false
+            self.playBtn.enabled = true
+
         }
         
         
@@ -286,7 +295,78 @@ class ViewController: NSViewController {
         //        })
         
     }
+
+    @IBAction func logButtonAction(sender: NSButton) {
+        
+        self.mouseCommands.removeAll()
+        
+        self.globalMonitorMouseMoveEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(.MouseMovedMask, handler: { (event: NSEvent) -> Void in
+            Log.debug("G mouse move", event.locationInWindow)
+            
+            let point = NSPoint.init(x: event.locationInWindow.x, y: 800 - event.locationInWindow.y)
+            let sleep = NSDate.init().timeIntervalSinceDate(self.startDate!)
+            
+            self.mouseCommands.append(Action.init(command: .Sleep, value: sleep))
+            self.mouseCommands.append(Action.init(command: .Move, value: point))
+            
+            self.startDate = NSDate.init()
+        })
+        
+        self.globalMonitorLeftMouseDownEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(.LeftMouseDownMask, handler: { (event: NSEvent) -> Void in
+            Log.debug("G left D", event.locationInWindow)
+            
+            let point = NSPoint.init(x: event.locationInWindow.x, y: 800 - event.locationInWindow.y)
+            let sleep = NSDate.init().timeIntervalSinceDate(self.startDate!)
+            
+            self.mouseCommands.append(Action.init(command: .Sleep, value: sleep))
+            self.mouseCommands.append(Action.init(command: .LeftDown, value: point))
+            
+            self.startDate = NSDate.init()
+        })
+        
+        self.globalMonitorLeftMouseUpEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(.LeftMouseUpMask, handler: { (event: NSEvent) -> Void in
+            Log.debug("G left U", event.locationInWindow)
+            
+            let point = NSPoint.init(x: event.locationInWindow.x, y: 800 - event.locationInWindow.y)
+            let sleep = NSDate.init().timeIntervalSinceDate(self.startDate!)
+            
+            self.mouseCommands.append(Action.init(command: .Sleep, value: sleep))
+            self.mouseCommands.append(Action.init(command: .LeftUp, value: point))
+            
+            self.startDate = NSDate.init()
+        })
+        
+        self.globalMonitorLeftMouseDraggedEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(.LeftMouseDraggedMask, handler: { (event: NSEvent) -> Void in
+            
+            Log.debug("G left Dragged", event.locationInWindow)
+            
+            let point = NSPoint.init(x: event.locationInWindow.x, y: 800 - event.locationInWindow.y)
+            let sleep = NSDate.init().timeIntervalSinceDate(self.startDate!)
+            
+            self.mouseCommands.append(Action.init(command: .Sleep, value: sleep))
+            self.mouseCommands.append(Action.init(command: .LeftDragged, value: point))
+            
+            self.startDate = NSDate.init()
+        })
+        
+        self.globalMonitorFlagsChangedEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(.OtherMouseDraggedMask, handler: { (event: NSEvent) -> Void in
+            Log.debug("G FlagsChanged", event.locationInWindow)
+            
+            let point = NSPoint.init(x: event.locationInWindow.x, y: 800 - event.locationInWindow.y)
+            let sleep = NSDate.init().timeIntervalSinceDate(self.startDate!)
+            
+            self.mouseCommands.append(Action.init(command: .Sleep, value: sleep))
+            self.mouseCommands.append(Action.init(command: .LeftDragged, value: point))
+            
+            self.startDate = NSDate.init()
+        })
+        
+        self.startDate = NSDate.init()
+        
+    }
     
+    // MARK: - Selector method
+
     func click(timer: NSTimer) {
         
         let date = NSDate.init()
@@ -361,90 +441,22 @@ class ViewController: NSViewController {
         CGEventPost(CGEventTapLocation.CGHIDEventTap, mouseUp)
     }
     
-    @IBAction func logButtonAction(sender: NSButton) {
-        
-        self.mouseCommands.removeAll()
-        
-        self.globalMonitorMouseMoveEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(.MouseMovedMask, handler: { (event: NSEvent) -> Void in
-            Log.debug("G mouse move", event.locationInWindow)
-            
-            let point = NSPoint.init(x: event.locationInWindow.x, y: 800 - event.locationInWindow.y)
-            let sleep = NSDate.init().timeIntervalSinceDate(self.startDate!)
-            
-            self.mouseCommands.append(Action.init(command: .Sleep, value: sleep))
-            self.mouseCommands.append(Action.init(command: .Move, value: point))
-            
-            self.startDate = NSDate.init()
-        })
-        
-        self.globalMonitorLeftMouseDownEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(.LeftMouseDownMask, handler: { (event: NSEvent) -> Void in
-            Log.debug("G left D", event.locationInWindow)
-            
-            let point = NSPoint.init(x: event.locationInWindow.x, y: 800 - event.locationInWindow.y)
-            let sleep = NSDate.init().timeIntervalSinceDate(self.startDate!)
-            
-            self.mouseCommands.append(Action.init(command: .Sleep, value: sleep))
-            self.mouseCommands.append(Action.init(command: .LeftDown, value: point))
-            
-            self.startDate = NSDate.init()
-        })
-        
-        self.globalMonitorLeftMouseUpEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(.LeftMouseUpMask, handler: { (event: NSEvent) -> Void in
-            Log.debug("G left U", event.locationInWindow)
-            
-            let point = NSPoint.init(x: event.locationInWindow.x, y: 800 - event.locationInWindow.y)
-            let sleep = NSDate.init().timeIntervalSinceDate(self.startDate!)
-            
-            self.mouseCommands.append(Action.init(command: .Sleep, value: sleep))
-            self.mouseCommands.append(Action.init(command: .LeftUp, value: point))
-            
-            self.startDate = NSDate.init()
-        })
-        
-        // ★TODO:ドラッグが連続的に取得できない
-        self.globalMonitorLeftMouseDraggedEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(.LeftMouseDraggedMask, handler: { (event: NSEvent) -> Void in
-            
-            Log.debug("G left Dragged", event.locationInWindow)
-            
-            let point = NSPoint.init(x: event.locationInWindow.x, y: 800 - event.locationInWindow.y)
-            let sleep = NSDate.init().timeIntervalSinceDate(self.startDate!)
-            
-            self.mouseCommands.append(Action.init(command: .Sleep, value: sleep))
-            self.mouseCommands.append(Action.init(command: .LeftDragged, value: point))
-            
-            self.startDate = NSDate.init()
-        })
-        
-        self.globalMonitorFlagsChangedEvent = NSEvent.addGlobalMonitorForEventsMatchingMask(.OtherMouseDraggedMask, handler: { (event: NSEvent) -> Void in
-            Log.debug("G FlagsChanged", event.locationInWindow)
-            
-            let point = NSPoint.init(x: event.locationInWindow.x, y: 800 - event.locationInWindow.y)
-            let sleep = NSDate.init().timeIntervalSinceDate(self.startDate!)
-            
-            self.mouseCommands.append(Action.init(command: .Sleep, value: sleep))
-            self.mouseCommands.append(Action.init(command: .LeftDragged, value: point))
-            
-            self.startDate = NSDate.init()
-        })
-        
-        self.startDate = NSDate.init()
-        
-    }
-    
     override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
         
         Log.debug(segue.destinationController)
         
     }
     
+    // MARK: - private method
+    
     // イベント登録
     private func registerEvents() {
         
         var anyObj: AnyObject? = nil
         
-        // グローバルイベント マウスムーブ
+        // グローバルイベント マウスMoved
         anyObj = NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.MouseMovedMask, handler: { (event: NSEvent) -> Void in
-            Log.debug("G event.locationInWindow", event.locationInWindow)
+            Log.debug("G MMoved Pos", event.locationInWindow)
             
             let point = NSPoint.init(x: event.locationInWindow.x, y: self.windowHeight! - event.locationInWindow.y)
             
@@ -459,10 +471,64 @@ class ViewController: NSViewController {
         })
         
         self.monitorEvents.append(anyObj!)
+
+        // グローバルイベント マウス左Down test
+        anyObj = NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDownMask, handler: { (event: NSEvent) -> Void in
+            Log.debug("G LMDown Pos", event.locationInWindow)
+            
+            let point = NSPoint.init(x: event.locationInWindow.x, y: self.windowHeight! - event.locationInWindow.y)
+            
+            self.mouseCommands.append(Action.init(command: .LeftDown, value: point))
+            
+            if let time = self.interval {
+                let sleepTime = NSDate.init().timeIntervalSinceDate(time)
+                self.mouseCommands.append(Action.init(command: .Sleep, value: sleepTime))
+            }
+            
+            self.interval = NSDate.init()
+        })
         
-        // ローカルイベント マウスムーブ
+        self.monitorEvents.append(anyObj!)
+
+        // グローバルイベント マウス左Up test
+        anyObj = NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseUpMask, handler: { (event: NSEvent) -> Void in
+            Log.debug("G LMUp Pos", event.locationInWindow)
+            
+            let point = NSPoint.init(x: event.locationInWindow.x, y: self.windowHeight! - event.locationInWindow.y)
+            
+            self.mouseCommands.append(Action.init(command: .LeftUp, value: point))
+            
+            if let time = self.interval {
+                let sleepTime = NSDate.init().timeIntervalSinceDate(time)
+                self.mouseCommands.append(Action.init(command: .Sleep, value: sleepTime))
+            }
+            
+            self.interval = NSDate.init()
+        })
+        
+        self.monitorEvents.append(anyObj!)
+
+        // グローバルイベント マウス左Dragged test
+        anyObj = NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDraggedMask, handler: { (event: NSEvent) -> Void in
+            Log.debug("G LMDragged Pos", event.locationInWindow)
+            
+            let point = NSPoint.init(x: event.locationInWindow.x, y: self.windowHeight! - event.locationInWindow.y)
+            
+            self.mouseCommands.append(Action.init(command: .LeftDragged, value: point))
+            
+            if let time = self.interval {
+                let sleepTime = NSDate.init().timeIntervalSinceDate(time)
+                self.mouseCommands.append(Action.init(command: .Sleep, value: sleepTime))
+            }
+            
+            self.interval = NSDate.init()
+        })
+        
+        self.monitorEvents.append(anyObj!)
+
+        // ローカルイベント マウスMoved
         anyObj = NSEvent.addLocalMonitorForEventsMatchingMask(NSEventMask.MouseMovedMask, handler: { (event: NSEvent) -> NSEvent? in
-            Log.debug("L event.locationInWindow", event.locationInWindow)
+            Log.debug("L MMoved Pos", event.locationInWindow)
             
             var point = CGPointZero
             
@@ -500,7 +566,130 @@ class ViewController: NSViewController {
         })
         
         self.monitorEvents.append(anyObj!)
+
+        // ローカルイベント マウスDown test
+        anyObj = NSEvent.addLocalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDownMask, handler: { (event: NSEvent) -> NSEvent? in
+            Log.debug("L LMDown Pos", event.locationInWindow)
+            
+            var point = CGPointZero
+            
+            if event.window == nil {
+                // マウスがアプリ外に出た場合、nil になるときがある
+                // そのとき event.locationInWindow は全画面の位置になる
+                
+                point = NSPoint.init(x: event.locationInWindow.x, y: self.windowHeight! - event.locationInWindow.y)
+                Log.debug("L point", point)
+                
+            }
+            else {
+                // window が取得できる場合は、全画面からの相対位置を求める
+                
+                let appFrame = event.window?.frame
+                let areaX = (appFrame?.origin.x)! + event.locationInWindow.x
+                let areaY = (appFrame?.origin.y)! + event.locationInWindow.y
+                let allAreaPoint = NSPoint.init(x: areaX, y: areaY)
+                
+                point = NSPoint.init(x: allAreaPoint.x, y: self.windowHeight! - allAreaPoint.y)
+                Log.debug("L point", point)
+                
+            }
+            
+            self.mouseCommands.append(Action.init(command: .LeftDown, value: point))
+            
+            if let time = self.interval {
+                let sleepTime = NSDate.init().timeIntervalSinceDate(time)
+                self.mouseCommands.append(Action.init(command: .Sleep, value: sleepTime))
+            }
+            
+            self.interval = NSDate.init()
+            
+            return event
+        })
         
+        self.monitorEvents.append(anyObj!)
+
+        // ローカルイベント マウスUp test
+        anyObj = NSEvent.addLocalMonitorForEventsMatchingMask(NSEventMask.LeftMouseUpMask, handler: { (event: NSEvent) -> NSEvent? in
+            Log.debug("L LMUp Pos", event.locationInWindow)
+            
+            var point = CGPointZero
+            
+            if event.window == nil {
+                // マウスがアプリ外に出た場合、nil になるときがある
+                // そのとき event.locationInWindow は全画面の位置になる
+                
+                point = NSPoint.init(x: event.locationInWindow.x, y: self.windowHeight! - event.locationInWindow.y)
+                Log.debug("L point", point)
+                
+            }
+            else {
+                // window が取得できる場合は、全画面からの相対位置を求める
+                
+                let appFrame = event.window?.frame
+                let areaX = (appFrame?.origin.x)! + event.locationInWindow.x
+                let areaY = (appFrame?.origin.y)! + event.locationInWindow.y
+                let allAreaPoint = NSPoint.init(x: areaX, y: areaY)
+                
+                point = NSPoint.init(x: allAreaPoint.x, y: self.windowHeight! - allAreaPoint.y)
+                Log.debug("L point", point)
+                
+            }
+            
+            self.mouseCommands.append(Action.init(command: .LeftUp, value: point))
+            
+            if let time = self.interval {
+                let sleepTime = NSDate.init().timeIntervalSinceDate(time)
+                self.mouseCommands.append(Action.init(command: .Sleep, value: sleepTime))
+            }
+            
+            self.interval = NSDate.init()
+            
+            return event
+        })
+        
+        self.monitorEvents.append(anyObj!)
+
+        // ローカルイベント マウスDragged test
+        anyObj = NSEvent.addLocalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDraggedMask, handler: { (event: NSEvent) -> NSEvent? in
+            Log.debug("L LMDragged Pos", event.locationInWindow)
+            
+            var point = CGPointZero
+            
+            if event.window == nil {
+                // マウスがアプリ外に出た場合、nil になるときがある
+                // そのとき event.locationInWindow は全画面の位置になる
+                
+                point = NSPoint.init(x: event.locationInWindow.x, y: self.windowHeight! - event.locationInWindow.y)
+                Log.debug("L point", point)
+                
+            }
+            else {
+                // window が取得できる場合は、全画面からの相対位置を求める
+                
+                let appFrame = event.window?.frame
+                let areaX = (appFrame?.origin.x)! + event.locationInWindow.x
+                let areaY = (appFrame?.origin.y)! + event.locationInWindow.y
+                let allAreaPoint = NSPoint.init(x: areaX, y: areaY)
+                
+                point = NSPoint.init(x: allAreaPoint.x, y: self.windowHeight! - allAreaPoint.y)
+                Log.debug("L point", point)
+                
+            }
+            
+            self.mouseCommands.append(Action.init(command: .LeftDragged, value: point))
+            
+            if let time = self.interval {
+                let sleepTime = NSDate.init().timeIntervalSinceDate(time)
+                self.mouseCommands.append(Action.init(command: .Sleep, value: sleepTime))
+            }
+            
+            self.interval = NSDate.init()
+            
+            return event
+        })
+        
+        self.monitorEvents.append(anyObj!)
+
     }
 
     // イベント解除
@@ -516,15 +705,15 @@ class ViewController: NSViewController {
 
         self.monitorEvents.removeAll()
         
-        if let _ = self.globalMonitorEvent {
-            NSEvent.removeMonitor(self.globalMonitorEvent!)
-            self.globalMonitorEvent = nil
-        }
-        
-        if let _ = self.localMonitorEvent {
-            NSEvent.removeMonitor(self.localMonitorEvent!)
-            self.localMonitorEvent = nil
-        }
+//        if let _ = self.globalMonitorEvent {
+//            NSEvent.removeMonitor(self.globalMonitorEvent!)
+//            self.globalMonitorEvent = nil
+//        }
+//        
+//        if let _ = self.localMonitorEvent {
+//            NSEvent.removeMonitor(self.localMonitorEvent!)
+//            self.localMonitorEvent = nil
+//        }
         
     }
     
