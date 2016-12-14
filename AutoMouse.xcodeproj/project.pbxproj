@@ -254,7 +254,7 @@
 				HEADER_SEARCH_PATHS = "/usr/local/Cellar/opencv/**";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/Cellar/opencv/2.4.12/lib,
+					/usr/local/Cellar/opencv/,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -299,7 +299,7 @@
 				HEADER_SEARCH_PATHS = "/usr/local/Cellar/opencv/**";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/Cellar/opencv/2.4.12/lib,
+					/usr/local/Cellar/opencv/,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -317,7 +317,7 @@
 				INFOPLIST_FILE = AutoMouse/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"/usr/local/Cellar/opencv/2.4.12/lib/**",
+					"/usr/local/Cellar/opencv/**",
 					"$(PROJECT_DIR)/AutoMouse",
 					"$(PROJECT_DIR)/AutoMouse/lib",
 				);
@@ -338,7 +338,7 @@
 				INFOPLIST_FILE = AutoMouse/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"/usr/local/Cellar/opencv/2.4.12/lib/**",
+					"/usr/local/Cellar/opencv/**",
 					"$(PROJECT_DIR)/AutoMouse",
 					"$(PROJECT_DIR)/AutoMouse/lib",
 				);

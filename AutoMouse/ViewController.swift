@@ -375,7 +375,6 @@ class ViewController: NSViewController {
         if false /*date.timeIntervalSinceDate(self.oldFireDate!) > 10 */ {
             
             self.oldFireDate = date
-            Log.debug(self.oldFireDate)
             
             OperationQueue().addOperation({ () -> Void in
                 

@@ -7,6 +7,7 @@
 //
 
 #import "Memory.h"
+#import <mach/mach.h>
 
 @implementation Memory
 
